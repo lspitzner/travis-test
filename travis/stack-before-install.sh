@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ls -la $HOME/.local/bin
+source travis_retry.sh
 
 if [ `uname` = "Darwin" ]
 then
