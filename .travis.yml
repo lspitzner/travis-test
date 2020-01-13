@@ -5,5 +5,7 @@ sudo: false
 jobs:
   include:
     language: generic
+    env: GHCVER=8.8.1 CABALVER=3.0 HAPPYVER=1.19.5 ALEXVER=3.1.7
     addons: {apt: {packages: [cabal-install-3.0,ghc-8.8.1,happy-1.19.5,alex-3.1.7], sources: [hvr-ghc]}}
+    before-install: travis/before-install.sh
     script: travis/script.sh
