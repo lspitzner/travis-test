@@ -4,19 +4,33 @@ sudo: false
 # Do not choose a language; we provide our own build tools.
 jobs:
   include:
-    language: generic
-    env:
-      - GHCVER=8.8.1
-      - CABALVER=3.0
-      - HAPPYVER=1.19.5
-      - ALEXVER=3.1.7
-      - PATH=/opt/ghc/$GHCVER/bin:/opt/cabal/$CABALVER/bin:$HOME/.local/bin:/opt/alex/$ALEXVER/bin:/opt/happy/$HAPPYVER/bin:$HOME/.cabal/bin:$PATH
-      - JOBS=1
-    addons: {apt: {packages: [cabal-install-3.0,ghc-8.8.1,happy-1.19.5,alex-3.1.7], sources: [hvr-ghc]}}
-    install: travis/canew-install.sh
-    script: travis/canew-script.sh
-    before-cache: travis/cabal-before-cache.sh
-    cache:
-      directories:
-      - $HOME/.cabal/packages
-      - $HOME/.cabal/store
+    - language: generic
+      env:
+        - GHCVER=8.8.1
+        - CABALVER=3.0
+        - HAPPYVER=1.19.5
+        - ALEXVER=3.1.7
+        - PATH=/opt/ghc/$GHCVER/bin:/opt/cabal/$CABALVER/bin:$HOME/.local/bin:/opt/alex/$ALEXVER/bin:/opt/happy/$HAPPYVER/bin:$HOME/.cabal/bin:$PATH
+        - JOBS=1
+      addons: {apt: {packages: [cabal-install-3.0,ghc-8.8.1,happy-1.19.5,alex-3.1.7], sources: [hvr-ghc]}}
+      install: travis/canew-install.sh
+      script: travis/canew-script.sh
+      before-cache: travis/cabal-before-cache.sh
+      cache:
+        directories:
+          - $HOME/.cabal/packages
+          - $HOME/.cabal/store
+    - language: generic
+      env:
+        - JOBS=1
+      addons: {apt: {packages: [libgmp-dev]}}
+      before-install: travis/stack-before-install
+      install: travis/stack-install.sh
+      script: travis/stack-script.sh
+      cache:
+        directories:
+          - $HOME/.stack/bin
+          - $HOME/.stack/precompiled
+          - $HOME/.stack/programs
+          - $HOME/.stack/setup-exe-cache
+          - $HOME/.stack/snapshots
