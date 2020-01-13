@@ -5,7 +5,13 @@ sudo: false
 jobs:
   include:
     language: generic
-    env: GHCVER=8.8.1 CABALVER=3.0 HAPPYVER=1.19.5 ALEXVER=3.1.7
+    env:
+      - GHCVER=8.8.1
+      - CABALVER=3.0
+      - HAPPYVER=1.19.5
+      - ALEXVER=3.1.7
+      - PATH=/opt/ghc/$GHCVER/bin:/opt/cabal/$CABALVER/bin:$HOME/.local/bin:/opt/alex/$ALEXVER/bin:/opt/happy/$HAPPYVER/bin:$HOME/.cabal/bin:$PATH
+      - JOBS=1
     addons: {apt: {packages: [cabal-install-3.0,ghc-8.8.1,happy-1.19.5,alex-3.1.7], sources: [hvr-ghc]}}
     install: travis/canew-install.sh
     script: travis/canew-script.sh
