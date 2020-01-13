@@ -9,3 +9,8 @@ jobs:
     addons: {apt: {packages: [cabal-install-3.0,ghc-8.8.1,happy-1.19.5,alex-3.1.7], sources: [hvr-ghc]}}
     install: travis/canew-install.sh
     script: travis/canew-script.sh
+    before-cache: travis/cabal-before-cache.sh
+    cache:
+      directories:
+      - $HOME/.cabal/packages
+      - $HOME/.cabal/store
