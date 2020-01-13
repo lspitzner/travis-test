@@ -5,6 +5,7 @@ sudo: false
 jobs:
   include:
     - language: generic
+      compiler: "ghc-8.8 cabal-v2"
       env:
         - GHCVER=8.8.1
         - CABALVER=3.0
@@ -21,6 +22,7 @@ jobs:
           - $HOME/.cabal/packages
           - $HOME/.cabal/store
     - language: generic
+      compiler: "ghc-8.8 stack"
       env:
         - JOBS=1
       addons: {apt: {packages: [libgmp-dev]}}
