@@ -36,3 +36,27 @@ jobs:
           - $HOME/.stack/programs
           - $HOME/.stack/setup-exe-cache
           - $HOME/.stack/snapshots
+    - language: generic
+      compiler: "ghc-8.8 stack dist and artifact"
+      env:
+        - JOBS=1
+      addons: {apt: {packages: [libgmp-dev]}}
+      before-install: travis/dist-before-install.sh
+      install: travis/dist-install.sh
+      script: travis/dist-script.sh
+      cache:
+        directories:
+          - $HOME/.stack/bin
+          - $HOME/.stack/precompiled
+          - $HOME/.stack/programs
+          - $HOME/.stack/setup-exe-cache
+          - $HOME/.stack/snapshots
+      deploy:
+        provider: releases
+        api_key: $GITHUB_OAUTH_TOKEN
+        file:
+          - travistest.tar.gz
+          - travistest
+        skip_cleanup: true
+        on:
+          tags: true
