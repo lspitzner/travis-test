@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 source travis/travis_retry.sh
 
 mkdir -p ~/.local/bin
