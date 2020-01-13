@@ -2,6 +2,8 @@
 
 source travis/travis_retry.sh
 
+mkdir -p ~/.local/bin
+
 if [ `uname` = "Darwin" ]
 then
   travis_retry curl --insecure -L https://www.stackage.org/stack/osx-x86_64\
