@@ -26,7 +26,7 @@ jobs:
       env:
         - JOBS=1
       addons: {apt: {packages: [libgmp-dev]}}
-      before-install: travis/stack-before-install
+      before-install: travis/stack-before-install.sh
       install: travis/stack-install.sh
       script: travis/stack-script.sh
       cache:
